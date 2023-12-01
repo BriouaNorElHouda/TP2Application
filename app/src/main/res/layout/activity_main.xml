@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/maingreen">
+
+        <ImageView
+            android:id="@+id/upButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="?android:attr/homeAsUpIndicator"
+            app:tint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/appbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:text="Commande de :"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/appbarsubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="Grossite Kaf Na3ja"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/searchic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/searchic"
+           />
+
+        <ImageView
+            android:id="@+id/scanic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/scanic"
+            android:layout_gravity="right"
+
+            />
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+      >
+
+        <ImageView
+            android:id="@+id/calendaric"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:onClick="showDatePickerDialog"
+            android:src="@drawable/calendaric"
+            android:contentDescription="@string/icon_description"/>
+
+        <TextView
+            android:id="@+id/selectedDateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="16dp"
+            android:layout_toRightOf="@id/calendaric"
+            android:text="2023-11-30"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/ListProduct"
+        android:layout_width="match_parent"
+        android:layout_height="393dp">
+
+    </ListView>
+    <!--
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+
+    -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/shopingic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/shoppingic"
+        app:backgroundTint="@color/white"
+        android:contentDescription="@string/icon_description"
+        app:tint="@color/maingreen" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/downbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/maingreen"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/totalprice"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/subgreen"
+            android:text="3.0 DZD"
+            android:textSize="20dp">
+
+        </Button>
+
+    </androidx.appcompat.widget.Toolbar>
+
+</LinearLayout>
