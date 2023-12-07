@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class ProductAdapter extends BaseAdapter {
     private List<Product> items;
 
     private int quantity = 0;
+    private double totalprice = 0.0;
     private TextView quantitytv;
 
     public ProductAdapter(Activity activity, int itemResourceId, List<Product> items) {
@@ -36,15 +38,18 @@ public class ProductAdapter extends BaseAdapter {
         ImageView imageId = layout.findViewById(R.id.imageId);
         TextView nameTV = layout.findViewById(R.id.name);
         TextView categoryTV = layout.findViewById(R.id.category);
-        quantitytv = layout.findViewById(R.id.quantity); // Initialize quantitytv here
+        TextView quantitytv = layout.findViewById(R.id.quantity);
         TextView priceTV = layout.findViewById(R.id.price);
 
-        imageId.setImageResource(items.get(position).imageId);
-        nameTV.setText(items.get(position).name);
-        categoryTV.setText(items.get(position).category);
-        quantitytv.setText(String.valueOf(items.get(position).quantity)); // Convert int to String
-        priceTV.setText(String.valueOf(items.get(position).price)); // Convert int to String
+        Product currentItem = items.get(position);
 
+        imageId.setImageResource(currentItem.imageId);
+        nameTV.setText(currentItem.name);
+        categoryTV.setText(currentItem.category);
+        quantitytv.setText(String.valueOf(currentItem.quantity));
+        priceTV.setText(String.valueOf(currentItem.price));
+
+        TextView totalTextView = layout.findViewById(R.id.total);
         ImageButton panieric = layout.findViewById(R.id.panieric);
         panieric.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,49 +58,48 @@ public class ProductAdapter extends BaseAdapter {
             }
         });
 
-        // Gestion des boutons d'ajout et de soustraction
-        ImageView addButton = layout.findViewById(R.id.addic);
-        ImageView removeButton = layout.findViewById(R.id.removeic);
-        TextView quantityTV = layout.findViewById(R.id.quantity);
-        TextView totalTV = layout.findViewById(R.id.total);
-
-
-
-
         ImageButton incrementButton = layout.findViewById(R.id.addic);
-        incrementButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                incrementValue();
-            }
-        });
-
         ImageButton decrementButton = layout.findViewById(R.id.removeic);
-        decrementButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                decrementValue();
+
+        incrementButton.setOnClickListener(v -> {
+            currentItem.quantity++;
+            quantitytv.setText(String.valueOf(currentItem.quantity));
+            updateTotal(currentItem, totalTextView);
+            updateTotalPrice();
+        });
+
+        decrementButton.setOnClickListener(v -> {
+            if (currentItem.quantity > 0) {
+                currentItem.quantity--;
+                quantitytv.setText(String.valueOf(currentItem.quantity));
+                updateTotal(currentItem, totalTextView);
+                updateTotalPrice();
             }
         });
 
+
+
+        Button btnTotalPrice = activity.findViewById(R.id.totalprice);
+        btnTotalPrice.setOnClickListener(v -> {
+            //Log.d("TotalPrice", "Total Price: " + getTotalPrice());
+            btnTotalPrice.setText(String.valueOf(getTotalPrice() +"DZD"));
+        });
         return layout;
+
     }
 
-    private void incrementValue() {
-        quantity++;
-        quantitytv.setText(String.valueOf(quantity));
+    private void updateTotal(Product currentItem, TextView totalTextView) {
+        // Assuming currentItem has 'price' attribute
+        double total = currentItem.quantity * currentItem.price;
+        totalTextView.setText(String.valueOf(total+"DZD"));
     }
+    private void updateTotalPrice() {
 
-    private void decrementValue() {
-        if (quantity > 0) {
-            quantity--;
-            quantitytv.setText(String.valueOf(quantity));
+        totalprice = 0.0;
+        for (Product item : items) {
+            totalprice += item.quantity * item.price;
         }
     }
-
-
-
-
 
     public void togglePanieric(ImageButton panieric) {
         Log.d("TogglePanieric", "ToggleButton Clicked!");
@@ -129,5 +133,8 @@ public class ProductAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+    public double getTotalPrice() {
+        return totalprice;
     }
 }

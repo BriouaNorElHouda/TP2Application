@@ -30,7 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ListView listView;
+    private Button totalPriceButton;
+    private ProductAdapter productAdapter;
 
 
     private int quantity = 0;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
+        totalPriceButton = findViewById(R.id.totalprice);
 
         //   Spinner s =findViewById(R.id.spinner);
        ListView l= findViewById(R.id.ListProduct);
@@ -58,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
        // s.setAdapter(adapter);
        l.setAdapter(adapter);
-
-
 
 
         FloatingActionButton fab = findViewById(R.id.shopingic);

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TP2Application</string>
+    <string name="price_format">%s DZD</string>
     <string name="icon_description">Description of your icon goes here</string>
 </resources>

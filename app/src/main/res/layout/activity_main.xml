@@ -135,7 +135,7 @@
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:backgroundTint="@color/subgreen"
-            android:text="3.0 DZD"
+            android:text="Total Price DZD"
             android:textSize="20dp">
 
         </Button>
